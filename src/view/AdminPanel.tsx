@@ -8,7 +8,7 @@ import {
 } from "../services/clienteService";
 import ClienteTable from "../components/ClienteTable";
 import ClienteForm from "../components/ClienteForm";
-
+import { Link } from "react-router-dom";
 interface Cliente {
   id: number;
   nombre: string;
@@ -135,9 +135,11 @@ const AdminPanel: React.FC = () => {
 
       <div className="relative z-10 max-w-6xl mx-auto">
         <header className="flex flex-col sm:flex-row justify-between items-center mb-8">
-          <h1 className="text-4xl font-extrabold text-pink-400 drop-shadow-[0_0_15px_#ec4899]">
-            Panel de Administración 💪
-          </h1>
+          <Link to="/">
+            <h1 className="text-4xl font-extrabold text-pink-400 drop-shadow-[0_0_15px_#ec4899]">
+              Panel de Administración 💪
+            </h1>
+          </Link>
 
           <div className="flex flex-wrap items-center gap-4 mt-4 sm:mt-0">
             {/* Selector de filtro */}
