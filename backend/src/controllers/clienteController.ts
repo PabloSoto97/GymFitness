@@ -29,7 +29,7 @@ export const crearCliente = async (req: Request, res: Response) => {
     });
     try {
       await fetch(
-        "http://localhost:5678/webhook-test/webhook-test/nuevo-cliente",
+        "https://gymfitness-t27t.onrender.com/webhook-test/webhook-test/nuevo-cliente",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

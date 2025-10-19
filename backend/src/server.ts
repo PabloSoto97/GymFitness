@@ -13,7 +13,18 @@ dotenv.config();
 const prisma = new PrismaClient();
 const app = express();
 
-app.use(cors());
+// 🔹 CORS CONFIGURADO
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", // desarrollo local
+      "https://fitnessgirl.vercel.app", // ⚠️ reemplazá con tu dominio de Vercel exacto
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 app.use(express.json());
 app.use("/api/usuarios", userRoutes);
 app.use("/api/clientes", clienteRoutes);
@@ -22,7 +33,7 @@ app.post("/api/login", loginUsuario);
 
 const PORT = process.env.PORT || 4000;
 
-// 🔹 PROBAMOS CONECTAR ANTES DE ESCUCHAR
+// 🔹 INICIO
 async function startServer() {
   try {
     await prisma.$connect();
