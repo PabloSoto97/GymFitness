@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 import { PrismaClient } from "@prisma/client";
 import {
   registrarUsuario,
@@ -12,14 +13,12 @@ import clienteRoutes from "./routes/clienteRoutes.js";
 dotenv.config();
 const prisma = new PrismaClient();
 const app = express();
-
+app.use(cookieParser());
 // 🔹 CORS CONFIGURADO
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173", // desarrollo local
-      "https://fitnessgirl.vercel.app", // ⚠️ reemplazá con tu dominio de Vercel exacto
-    ],
+    origin: ["http://localhost:5173", "https://fitnessgirl.vercel.app"],
+    credentials: true, // 🔹 Muy importante
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
