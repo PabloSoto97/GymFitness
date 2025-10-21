@@ -11,7 +11,7 @@ const router = Router();
 
 router.post("/", verificarTokenAdmin, crearCliente);
 router.get("/", listarClientes);
-router.put("/:id", verificarTokenAdmin, actualizarCliente);
+router.put("/:id", actualizarCliente);
 router.delete("/:id", verificarTokenAdmin, eliminarCliente);
 
 export default router;
