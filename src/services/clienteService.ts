@@ -1,4 +1,4 @@
-const API_URL = `${import.meta.env.VITE_API_URL}/api/clientes`;
+const API_URL = `${import.meta.env.VITE_API_URL}/api/login`;
 
 export const getClientes = async (token: string) => {
   const res = await fetch(API_URL, {

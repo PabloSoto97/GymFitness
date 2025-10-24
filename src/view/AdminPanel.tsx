@@ -16,6 +16,7 @@ interface Cliente {
   telefono?: string;
   fechaInicio: string;
   fechaFin?: string;
+  notificado?: boolean;
   pagado: boolean;
 }
 

@@ -7,6 +7,7 @@ interface Cliente {
   telefono?: string;
   fechaInicio: string;
   fechaFin?: string;
+  notificado?: boolean;
   pagado: boolean;
 }
 
@@ -43,6 +44,7 @@ const ClienteTable: React.FC<ClienteTableProps> = ({
             <th className="py-3 px-4 text-left">Inicio</th>
             <th className="py-3 px-4 text-left">Fin</th>
             <th className="py-3 px-4 text-left">Pago</th>
+            <th className="py-3 px-4 text-left">notificado</th>
             <th className="py-3 px-4 text-center">Acciones</th>
           </tr>
         </thead>
@@ -67,6 +69,13 @@ const ClienteTable: React.FC<ClienteTableProps> = ({
                 <td className="py-3 px-4">{formatDate(cliente.fechaFin)}</td>
                 <td className="py-3 px-4">
                   {cliente.pagado ? (
+                    <span className="text-green-400 font-semibold">✔️</span>
+                  ) : (
+                    <span className="text-red-400 font-semibold">❌</span>
+                  )}
+                </td>
+                <td className="py-3 px-4">
+                  {cliente.notificado ? (
                     <span className="text-green-400 font-semibold">✔️</span>
                   ) : (
                     <span className="text-red-400 font-semibold">❌</span>

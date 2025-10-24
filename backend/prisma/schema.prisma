@@ -27,15 +27,16 @@ model Usuario {
 model Cliente {
   id           Int      @id @default(autoincrement())
   nombre       String
-  email        String
+  email        String   @unique   // 👈 Agregá esto
   telefono     String
   fechaInicio  DateTime
   fechaFin     DateTime
   pagado       Boolean
-  notificado   Boolean   @default(false) // 👈 nuevo campo
+  notificado   Boolean   @default(false)
   creadoPor    Int
   admin        Usuario   @relation(fields: [creadoPor], references: [id])
 }
+
 
 enum Rol {
   ADMIN
