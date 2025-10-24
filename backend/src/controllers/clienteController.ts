@@ -36,7 +36,8 @@ export const crearCliente = async (req: Request, res: Response) => {
     // Enviar al webhook de n8n
     try {
       await fetch(
-        "https://gymfitness-t27t.onrender.com/webhook-test/webhook-test/nuevo-cliente",
+        `${process.env.BACK_API_URL}/webhook-test/webhook-test/nuevo-cliente`,
+
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
