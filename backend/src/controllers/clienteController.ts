@@ -36,7 +36,7 @@ export const crearCliente = async (req: Request, res: Response) => {
     // Enviar al webhook de n8n
     try {
       await fetch(
-        `${process.env.BACK_API_URL}/webhook-test/webhook-test/nuevo-cliente`,
+        `https://n8n-deploy-959l.onrender.com/webhook-test/nuevo-cliente`,
 
         {
           method: "POST",
