@@ -35,11 +35,14 @@ export const crearCliente = async (req: Request, res: Response) => {
 
     // Enviar al webhook de n8n
     try {
-      await fetch("http://localhost:5678/webhook-test/nuevo-cliente", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(cliente),
-      });
+      await fetch(
+        "https://gymfitness-t27t.onrender.com/webhook-test/webhook-test/nuevo-cliente",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(cliente),
+        }
+      );
     } catch (err) {
       console.error("⚠️ Error enviando a n8n:", err);
     }
