@@ -7,10 +7,12 @@ export const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // 👈 nuevo estado
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setLoading(true); // 👈 activar loading
 
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/login`, {
@@ -25,6 +27,7 @@ export const Login: React.FC = () => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("rol", data.usuario.rol);
       localStorage.setItem("nombre", data.usuario.nombre);
+
       if (data.usuario.rol === "ADMIN") {
         navigate("/admin");
       } else if (data.usuario.rol === "CLIENTE") {
@@ -34,6 +37,8 @@ export const Login: React.FC = () => {
       }
     } catch (err: any) {
       setError(err.message);
+    } finally {
+      setLoading(false); // 👈 desactivar loading
     }
   };
 
@@ -67,6 +72,7 @@ export const Login: React.FC = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={loading}
             />
           </div>
 
@@ -81,14 +87,25 @@ export const Login: React.FC = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              disabled={loading}
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-md transition shadow-[0_0_15px_rgba(236,72,153,0.4)]"
+            disabled={loading}
+            className={`w-full flex items-center justify-center bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-md transition shadow-[0_0_15px_rgba(236,72,153,0.4)] ${
+              loading ? "opacity-80 cursor-not-allowed" : ""
+            }`}
           >
-            Iniciar sesión
+            {loading ? (
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin"></div>
+                Cargando...
+              </div>
+            ) : (
+              "Iniciar sesión"
+            )}
           </button>
         </form>
       </div>

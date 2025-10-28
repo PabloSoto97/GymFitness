@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   getClientes,
   crearCliente,
@@ -8,7 +8,7 @@ import {
 } from "../services/clienteService";
 import ClienteTable from "../components/ClienteTable";
 import ClienteForm from "../components/ClienteForm";
-import { Link } from "react-router-dom";
+
 interface Cliente {
   id: number;
   nombre: string;
@@ -26,6 +26,7 @@ const AdminPanel: React.FC = () => {
   const [token] = useState(localStorage.getItem("token") || "");
   const [modo, setModo] = useState<"tabla" | "nuevo" | "editar">("tabla");
   const [clienteActual, setClienteActual] = useState<Cliente | null>(null);
+  const [loading, setLoading] = useState(true); // 👈 Loader agregado
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,10 +39,13 @@ const AdminPanel: React.FC = () => {
 
   const cargarClientes = async () => {
     try {
+      setLoading(true); // mostrar loader mientras carga
       const data = await getClientes(token);
       setClientes(data);
     } catch (error) {
       console.error("Error al cargar clientes:", error);
+    } finally {
+      setLoading(false); // ocultar loader cuando termina
     }
   };
 
@@ -51,33 +55,42 @@ const AdminPanel: React.FC = () => {
 
   const handleCrear = async (data: Omit<Cliente, "id" | "fechaInicio">) => {
     try {
+      setLoading(true);
       await crearCliente(data, token);
       setModo("tabla");
       await cargarClientes();
     } catch (error) {
       console.error("Error al crear cliente:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleActualizar = async (data: Partial<Cliente>) => {
     if (!clienteActual) return;
     try {
+      setLoading(true);
       await actualizarCliente(clienteActual.id, data, token);
       setModo("tabla");
       setClienteActual(null);
       await cargarClientes();
     } catch (error) {
       console.error("Error al actualizar cliente:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleEliminar = async (id: number) => {
     if (!window.confirm("¿Seguro que deseas eliminar este cliente?")) return;
     try {
+      setLoading(true);
       await eliminarCliente(id, token);
       await cargarClientes();
     } catch (error) {
       console.error("Error al eliminar cliente:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -108,7 +121,7 @@ const AdminPanel: React.FC = () => {
     }
   });
 
-  // 📊 Métricas para el resumen
+  // 📊 Métricas
   const hoy = new Date();
   const activos = clientes.filter(
     (c) => c.fechaFin && new Date(c.fechaFin) > hoy
@@ -129,6 +142,18 @@ const AdminPanel: React.FC = () => {
     return dias <= 14;
   }).length;
 
+  // 🌀 Loader cuando Render despierta o tarda la API
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
+        <div className="w-12 h-12 border-4 border-pink-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p className="text-pink-400 font-semibold text-lg animate-pulse">
+          Conectando con el servidor...
+        </p>
+      </div>
+    );
+  }
+
   return (
     <section className="relative min-h-screen bg-gradient-to-b from-gray-950 to-black text-white p-8 overflow-hidden">
       <div className="absolute inset-0 bg-[url('/bg.jpeg')] bg-cover bg-center opacity-30 blur-sm"></div>
@@ -143,7 +168,6 @@ const AdminPanel: React.FC = () => {
           </Link>
 
           <div className="flex flex-wrap items-center gap-4 mt-4 sm:mt-0">
-            {/* Selector de filtro */}
             <select
               value={filtro}
               onChange={(e) => setFiltro(e.target.value)}
@@ -172,7 +196,7 @@ const AdminPanel: React.FC = () => {
           </div>
         </header>
 
-        {/* 📈 Tarjetas de métricas */}
+        {/* 📈 Métricas */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 animate-fadeIn">
           <div className="bg-gray-900 p-4 rounded-xl text-center border border-pink-500/30 shadow-md">
             <p className="text-sm text-gray-400">Activos</p>
