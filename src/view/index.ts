@@ -8,3 +8,4 @@ export * from "./RutinaGluteosFemorales";
 export * from "./RutinaFullBody3Dias";
 export * from "./RutinaActivoFuncional";
 export * from "./Login";
+export * from "./CalculadoraMacros";

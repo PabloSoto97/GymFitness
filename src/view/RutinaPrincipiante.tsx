@@ -1,5 +1,3 @@
-// RutinaPrincipiante.jsx
-
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp, Dumbbell } from "lucide-react";
 
@@ -127,7 +125,6 @@ const rutina: DiaRutina[] = [
 ];
 
 export const RutinaPrincipiante: React.FC = () => {
-  // Mantengo el estado del acordeón
   const [abierto, setAbierto] = useState<string | null>("Lunes");
 
   const toggleDia = (nombre: string) => {
@@ -136,38 +133,42 @@ export const RutinaPrincipiante: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto py-10 px-6">
-      {/* Título Principal */}
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-center text-pink-500 drop-shadow-[0_0_10px_#ff2b7b] tracking-wider">
-        Rutina Nivel <span className="text-white">Principiante</span>
+      {/* TÍTULO */}
+      <h1 className="text-center text-5xl font-extrabold mb-3 tracking-wider">
+        <span className="text-pink-500 drop-shadow-[0_0_18px_#ff2b7b]">
+          Principiante
+        </span>
       </h1>
 
-      {/* Subtítulo */}
-      <p className="text-lg text-center text-gray-300 mb-10">
-        Una introducción perfecta al entrenamiento de fuerza, cubriendo todos
-        los grupos musculares principales.
+      <p className="text-lg text-center text-gray-300 mb-12">
+        Entrenamiento progresivo, seguro y perfecto para comenzar tu camino
+        fitness.
       </p>
 
-      {/* Contenedor de Acordeón */}
+      {/* ACORDEÓN */}
       {rutina.map((dia) => (
         <div
           key={dia.nombre}
-          className="mb-4 bg-[#0a0a0a]/70 backdrop-blur-sm rounded-xl overflow-hidden 
-                     border border-pink-500/20 hover:border-pink-500/60 shadow-lg 
-                     hover:shadow-[0_0_15px_#ff2b7b80] transition-all duration-300"
+          className="mb-5 bg-[#0a0a0a]/70 backdrop-blur-xl rounded-2xl overflow-hidden 
+                     border border-pink-500/20 hover:border-pink-500/60 
+                     shadow-lg hover:shadow-[0_0_25px_#ff2b7b80]
+                     transition-all duration-300"
         >
-          {/* Botón/Encabezado del Día */}
+          {/* HEADER */}
           <button
             onClick={() => toggleDia(dia.nombre)}
-            className={`w-full flex justify-between items-center px-6 py-4 text-left font-bold transition-colors duration-300 ${
-              abierto === dia.nombre
-                ? "bg-pink-600/50 text-white shadow-inner shadow-pink-900/50"
-                : "text-pink-400 hover:bg-[#1a1a1a]"
-            }`}
+            className={`w-full flex justify-between items-center px-6 py-5 text-left font-bold text-lg transition-all duration-300
+              ${
+                abierto === dia.nombre
+                  ? "bg-pink-700/40 text-white shadow-inner shadow-pink-900/40"
+                  : "text-pink-300 hover:bg-[#141414]"
+              }`}
           >
-            <span>
+            <span className="tracking-wide">
               {dia.nombre}:{" "}
               <span className="font-medium text-gray-300">{dia.musculos}</span>
             </span>
+
             {abierto === dia.nombre ? (
               <ChevronUp className="w-6 h-6 text-white" />
             ) : (
@@ -175,50 +176,43 @@ export const RutinaPrincipiante: React.FC = () => {
             )}
           </button>
 
-          {/* Contenido (Ejercicios) */}
+          {/* CONTENIDO */}
           <div
-            className={`transition-all duration-500 ease-in-out ${
+            className={`transition-all duration-500 ${
               abierto === dia.nombre
                 ? "max-h-screen opacity-100"
                 : "max-h-0 opacity-0"
             } overflow-hidden`}
           >
-            <div className="p-4 md:p-6 bg-black/30">
-              {/* Encabezados de la tabla */}
-              <div className="hidden md:grid grid-cols-5 font-semibold text-sm text-pink-400 border-b border-pink-700/50 pb-2 mb-3">
-                <span className="col-span-3">EJERCICIO</span>
-                <span className="text-center">SERIES</span>
-                <span className="text-center">REPETICIONES</span>
+            <div className="p-6 bg-black/40">
+              {/* ENCABEZADO TABLA */}
+              <div className="hidden md:grid grid-cols-5 font-semibold text-sm text-pink-400 border-b border-pink-700/40 pb-2 mb-4">
+                <span className="col-span-3">Ejercicio</span>
+                <span className="text-center">Series</span>
+                <span className="text-center">Reps</span>
               </div>
 
-              {/* Lista de Ejercicios */}
-              <div className="flex flex-col gap-3">
+              {/* LISTA DE EJERCICIOS */}
+              <div className="flex flex-col gap-4">
                 {dia.ejercicios.map((ej, i) => (
                   <div
                     key={i}
-                    className="grid grid-cols-5 items-center bg-[#1a1a1a] p-3 rounded-lg border border-pink-700/30 text-gray-200 shadow-inner shadow-black/50"
+                    className="grid grid-cols-5 items-center p-4 rounded-xl bg-[#131313] 
+                               border border-pink-500/20 shadow-inner shadow-black/60 
+                               hover:shadow-[0_0_15px_#ff2b7b60] transition-all duration-300 text-gray-200"
                   >
-                    {/* Nombre del Ejercicio */}
                     <div className="col-span-5 md:col-span-3 flex items-center gap-3 font-medium">
-                      <Dumbbell className="w-5 h-5 text-pink-500 flex-shrink-0" />
+                      <Dumbbell className="w-5 h-5 text-pink-500 drop-shadow-[0_0_6px_#ff2b7b]" />
                       <span>{ej.nombre}</span>
                     </div>
 
-                    {/* Series */}
-                    <div className="col-span-2 md:col-span-1 text-center mt-2 md:mt-0 flex md:block justify-between items-center border-t border-gray-700 md:border-none pt-2 md:pt-0">
-                      <span className="md:hidden text-xs text-pink-400/80 mr-2">
-                        Series:
-                      </span>
+                    <div className="col-span-2 md:col-span-1 text-center mt-2 md:mt-0">
                       <span className="font-bold text-pink-300">
                         {ej.series}
                       </span>
                     </div>
 
-                    {/* Repeticiones */}
-                    <div className="col-span-3 md:col-span-1 text-center mt-2 md:mt-0 flex md:block justify-between items-center border-t border-gray-700 md:border-none pt-2 md:pt-0">
-                      <span className="md:hidden text-xs text-pink-400/80 mr-2">
-                        Reps:
-                      </span>
+                    <div className="col-span-3 md:col-span-1 text-center mt-2 md:mt-0">
                       <span className="font-bold text-pink-300">
                         {ej.repeticiones}
                       </span>
@@ -228,11 +222,13 @@ export const RutinaPrincipiante: React.FC = () => {
               </div>
             </div>
           </div>
-          {/* Glow inferior para el acordeón cerrado */}
+
+          {/* GLOW INFERIOR */}
           <div
-            className={`h-[2px] bg-gradient-to-r from-transparent via-pink-500 to-transparent ${
-              abierto === dia.nombre ? "opacity-0" : "opacity-30"
-            } transition-opacity duration-300`}
+            className={`h-[2px] bg-gradient-to-r from-transparent via-pink-500 to-transparent 
+              ${
+                abierto === dia.nombre ? "opacity-0" : "opacity-40"
+              } transition-opacity`}
           />
         </div>
       ))}

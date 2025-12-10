@@ -1,6 +1,7 @@
 // AppRouter.jsx
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AppLayout } from "./layouts/AppLayout";
+
 import {
   Ejercicios,
   Inicio,
@@ -11,21 +12,29 @@ import {
   RutinaGluteosFemorales,
   RutinaFullBody3Dias,
   RutinaActivoFuncional,
+  CalculadoraMacros,
   Login,
 } from "./view";
+import Register from "./view/Register";
+import LoginFire from "./view/LoginFire";
 import AdminPanel from "./view/AdminPanel";
+
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
 export const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* RUTAS CON LAYOUT PRINCIPAL */}
+        {/* 🔥 LOGIN SIN LAYOUT (para evitar el formato viejo) */}
+        <Route path="/login" element={<LoginFire />} />
+        <Route path="/ingresar" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* 🔥 TODO LO QUE SI USA LAYOUT PRINCIPAL */}
         <Route element={<AppLayout />}>
           <Route path="/" element={<Inicio />} />
-          <Route path="/login" element={<Login />} />
 
-          {/* RUTAS PROTEGIDAS */}
+          {/* 🔒 RUTAS PROTEGIDAS */}
           <Route
             path="/ejercicios"
             element={
@@ -34,6 +43,7 @@ export const AppRouter = () => {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/rutinas"
             element={
@@ -42,6 +52,16 @@ export const AppRouter = () => {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/macros"
+            element={
+              <ProtectedRoute>
+                <CalculadoraMacros />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/rutinas/principiante"
             element={
@@ -50,6 +70,7 @@ export const AppRouter = () => {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/rutinas/intermedio"
             element={
@@ -58,6 +79,7 @@ export const AppRouter = () => {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/rutinas/avanzado"
             element={
@@ -66,6 +88,7 @@ export const AppRouter = () => {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/rutinas/gluteos-femorales"
             element={
@@ -74,6 +97,7 @@ export const AppRouter = () => {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/rutinas/activo-funcional"
             element={
@@ -82,6 +106,7 @@ export const AppRouter = () => {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/rutinas/full-body-3dias"
             element={
@@ -92,7 +117,7 @@ export const AppRouter = () => {
           />
         </Route>
 
-        {/* PANEL ADMIN PROTEGIDO */}
+        {/* 🔒 PANEL ADMIN (fuera del layout principal) */}
         <Route
           path="/admin"
           element={
@@ -102,7 +127,7 @@ export const AppRouter = () => {
           }
         />
 
-        {/* RUTA POR DEFECTO */}
+        {/* RUTA DEFAULT */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>

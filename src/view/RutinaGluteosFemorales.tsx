@@ -51,11 +51,7 @@ const rutina: DiaRutina[] = [
         series: "4",
         repeticiones: "10-12",
       },
-      {
-        nombre: "Remo en Máquina o Barra",
-        series: "4",
-        repeticiones: "10",
-      },
+      { nombre: "Remo en Máquina o Barra", series: "4", repeticiones: "10" },
       {
         nombre:
           "Triserie de Hombros: Press Frontal + Vuelos Laterales + Face Pull",
@@ -161,68 +157,84 @@ export const RutinaGluteosFemorales: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto py-10 px-6">
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-center text-pink-500 drop-shadow-[0_0_10px_#ff2b7b] tracking-wider">
-        Rutina <span className="text-white">Glúteos & Femorales</span>
+      {/* Título */}
+      <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-center text-white tracking-wide">
+        Rutina{" "}
+        <span className="text-pink-500 drop-shadow-[0_0_12px_#ff2b7b]">
+          Glúteos & Femorales
+        </span>
       </h1>
 
-      <p className="text-lg text-center text-gray-300 mb-10">
-        Plan especializado de alto volumen y frecuencia para la máxima
-        hipertrofia del tren inferior.
+      <p className="text-lg text-center text-gray-300 mb-10 leading-relaxed">
+        Plan especializado para máxima hipertrofia del tren inferior:
+        intensidad, volumen y técnica controlada.
       </p>
 
+      {/* Días */}
       {rutina.map((dia) => (
         <div
           key={dia.nombre}
-          className="mb-4 bg-[#0a0a0a]/70 backdrop-blur-sm rounded-xl overflow-hidden 
-                     border border-pink-500/20 hover:border-pink-500/60 shadow-lg 
-                     hover:shadow-[0_0_15px_#ff2b7b80] transition-all duration-300"
+          className="mb-5 rounded-2xl bg-[#0f0f0f]/70 border border-pink-500/20 
+                     shadow-[0_0_25px_#00000080] backdrop-blur-lg overflow-hidden
+                     hover:border-pink-500/40 transition-all duration-300"
         >
+          {/* Header del día */}
           <button
             onClick={() => toggleDia(dia.nombre)}
-            className={`w-full flex justify-between items-center px-6 py-4 text-left font-bold transition-colors duration-300 ${
-              abierto === dia.nombre
-                ? "bg-pink-600/50 text-white shadow-inner shadow-pink-900/50"
-                : "text-pink-400 hover:bg-[#1a1a1a]"
-            }`}
+            className={`w-full flex justify-between items-center px-6 py-5 text-left font-semibold text-lg transition-all duration-300
+              ${
+                abierto === dia.nombre
+                  ? "bg-pink-600/40 text-white shadow-inner shadow-pink-900/40"
+                  : "text-pink-300 hover:bg-[#1b1b1b]"
+              }`}
           >
             <span>
-              {dia.nombre}:{" "}
-              <span className="font-medium text-gray-300">{dia.musculos}</span>
+              {dia.nombre} ·{" "}
+              <span className="text-gray-300 font-medium">{dia.musculos}</span>
             </span>
+
             {abierto === dia.nombre ? (
-              <ChevronUp className="w-6 h-6 text-white" />
+              <ChevronUp className="w-7 h-7 text-white" />
             ) : (
-              <ChevronDown className="w-6 h-6 text-pink-500" />
+              <ChevronDown className="w-7 h-7 text-pink-400" />
             )}
           </button>
 
+          {/* Contenido */}
           <div
-            className={`transition-all duration-500 ease-in-out ${
+            className={`transition-all duration-500 ${
               abierto === dia.nombre
                 ? "max-h-screen opacity-100"
                 : "max-h-0 opacity-0"
             } overflow-hidden`}
           >
-            <div className="p-4 md:p-6 bg-black/30">
-              <div className="hidden md:grid grid-cols-5 font-semibold text-sm text-pink-400 border-b border-pink-700/50 pb-2 mb-3">
+            <div className="p-6 bg-black/40">
+              {/* Encabezados Desktop */}
+              <div className="hidden md:grid grid-cols-5 font-semibold text-sm text-pink-400 border-b border-pink-600/40 pb-2 mb-4 tracking-wide">
                 <span className="col-span-3">EJERCICIO</span>
                 <span className="text-center">SERIES</span>
-                <span className="text-center">REPETICIONES</span>
+                <span className="text-center">REPS</span>
               </div>
 
-              <div className="flex flex-col gap-3">
+              {/* Ejercicios */}
+              <div className="flex flex-col gap-4">
                 {dia.ejercicios.map((ej, i) => (
                   <div
                     key={i}
-                    className="grid grid-cols-5 items-center bg-[#1a1a1a] p-3 rounded-lg border border-pink-700/30 text-gray-200 shadow-inner shadow-black/50"
+                    className="grid grid-cols-5 items-center bg-[#181818] p-4 rounded-xl border border-pink-700/30 
+                               shadow-inner shadow-black/40 hover:bg-[#1f1f1f] transition-all"
                   >
-                    <div className="col-span-5 md:col-span-3 flex items-center gap-3 font-medium">
-                      <Dumbbell className="w-5 h-5 text-pink-500 flex-shrink-0" />
-                      <span>{ej.nombre}</span>
+                    <div className="col-span-5 md:col-span-3 flex items-center gap-3 font-medium text-gray-200">
+                      <Dumbbell className="w-6 h-6 text-pink-500 flex-shrink-0 drop-shadow-[0_0_6px_#ff2b7b]" />
+                      {ej.nombre}
                     </div>
 
-                    <div className="col-span-2 md:col-span-1 text-center mt-2 md:mt-0 flex md:block justify-between items-center border-t border-gray-700 md:border-none pt-2 md:pt-0">
-                      <span className="md:hidden text-xs text-pink-400/80 mr-2">
+                    {/* SERIES */}
+                    <div
+                      className="col-span-2 md:col-span-1 text-center mt-3 md:mt-0 flex md:block justify-between items-center 
+                                    border-t border-gray-700 md:border-none pt-2 md:pt-0"
+                    >
+                      <span className="md:hidden text-xs text-pink-400/80">
                         Series:
                       </span>
                       <span className="font-bold text-pink-300">
@@ -230,8 +242,12 @@ export const RutinaGluteosFemorales: React.FC = () => {
                       </span>
                     </div>
 
-                    <div className="col-span-3 md:col-span-1 text-center mt-2 md:mt-0 flex md:block justify-between items-center border-t border-gray-700 md:border-none pt-2 md:pt-0">
-                      <span className="md:hidden text-xs text-pink-400/80 mr-2">
+                    {/* REPS */}
+                    <div
+                      className="col-span-3 md:col-span-1 text-center mt-3 md:mt-0 flex md:block justify-between items-center 
+                                    border-t border-gray-700 md:border-none pt-2 md:pt-0"
+                    >
+                      <span className="md:hidden text-xs text-pink-400/80">
                         Reps:
                       </span>
                       <span className="font-bold text-pink-300">
@@ -243,11 +259,6 @@ export const RutinaGluteosFemorales: React.FC = () => {
               </div>
             </div>
           </div>
-          <div
-            className={`h-[2px] bg-gradient-to-r from-transparent via-pink-500 to-transparent ${
-              abierto === dia.nombre ? "opacity-0" : "opacity-30"
-            } transition-opacity duration-300`}
-          />
         </div>
       ))}
     </div>

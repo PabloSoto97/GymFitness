@@ -25,26 +25,24 @@ const rutina: DiaRutina[] = [
       },
       {
         nombre:
-          "Circuito: Sentadilla frontal (con peso) + Desplantes 'patito' (cortos) + Sentadilla profunda (para aductores)",
+          "Circuito: Sentadilla frontal (con peso) + Desplantes 'patito' + Sentadilla profunda",
         series: "4",
         repeticiones: "Ida y vuelta = 1 serie",
       },
       {
-        nombre: "Biserie: Prensa a 45° (pies separados) + Hack (pies en medio)",
+        nombre: "Biserie: Prensa 45° (pies separados) + Hack (pies al medio)",
         series: "4",
         repeticiones: "Según carga",
       },
       {
-        nombre:
-          "Biserie combinada: Sillón de aducción + Zancada lateral unilateral",
+        nombre: "Biserie: Aducción + Zancada lateral unilateral",
         series: "4",
         repeticiones: "12",
       },
       {
-        nombre:
-          "Biserie: Camilla de extensiones unilateral + Triserie de pantorrillas",
+        nombre: "Biserie: Extensión unilateral + Triserie de pantorrillas",
         series: "4",
-        repeticiones: "15 (extensiones) / 10 (pantorrillas)",
+        repeticiones: "15 / 10",
       },
     ],
   },
@@ -53,25 +51,24 @@ const rutina: DiaRutina[] = [
     musculos: "Hombros, Pectorales, Tríceps",
     ejercicios: [
       {
-        nombre: "Activación: Vuelos laterales + Vuelos frontales",
+        nombre: "Activación: Vuelos laterales + frontales",
         series: "2",
         repeticiones: "20",
       },
       {
-        nombre:
-          "Circuito: Vuelos laterales + Vuelos frontales + Press militar + Vuelo a 45°",
+        nombre: "Circuito: Laterales + Frontales + Press militar + Vuelo a 45°",
         series: "4",
         repeticiones: "12",
       },
       {
         nombre:
-          "Biserie: Press de banca + Apertura de pecho (banco plano) + Press en banco a 45° + Apertura de pecho",
+          "Biserie gigante: Press banca + Apertura + Press 45° + Apertura",
         series: "4",
         repeticiones: "12",
       },
       {
         nombre:
-          "Triserie: Extensión en polea alta (soga o barra) + Extensión de codo (tras nuca) + Extensión de codo unilateral",
+          "Triserie: Extensión en polea + Tras nuca + Extensión unilateral",
         series: "4",
         repeticiones: "15",
       },
@@ -79,32 +76,26 @@ const rutina: DiaRutina[] = [
   },
   {
     nombre: "Miércoles",
-    musculos: "Glúteos e Isquiotibiales",
+    musculos: "Glúteos e Isquios",
     ejercicios: [
       {
         nombre: "Activación: Hip thrust con pulso",
         series: "1",
         repeticiones: "20",
       },
+      { nombre: "Hip thrust", series: "4", repeticiones: "12-15" },
       {
-        nombre: "Hip thrust",
-        series: "4",
-        repeticiones: "12-15 (carga alta)",
-      },
-      {
-        nombre:
-          "Triserie: Sentadilla profunda (hack o libre) + Peso muerto rumano + Subida a banco",
+        nombre: "Triserie: Sentadilla profunda + Rumano + Subida al banco",
         series: "4",
         repeticiones: "10-12",
       },
       {
-        nombre:
-          "Biserie: Patada de burro en polea + Abducción con polea o disco",
+        nombre: "Biserie: Patada de burro + Abducción",
         series: "4",
         repeticiones: "12",
       },
       {
-        nombre: "Biserie: Camilla ventral para isquios + Swing con pesa rusa",
+        nombre: "Biserie: Camilla ventral + Swing con pesa rusa",
         series: "4",
         repeticiones: "15",
       },
@@ -115,20 +106,18 @@ const rutina: DiaRutina[] = [
     musculos: "Espalda y Bíceps",
     ejercicios: [
       {
-        nombre:
-          "Activación: Jalón al pecho agarre abierto + Jalón al pecho agarre cerrado",
+        nombre: "Activación: Jalón abierto + cerrado",
         series: "2",
-        repeticiones: "20 (poco peso)",
+        repeticiones: "20",
       },
       {
         nombre:
-          "Circuito: Jalón abierto + Jalón cerrado + Jalón estrecho (agarre cromado) + Remo + Remo unilateral",
+          "Circuito: Jalón abierto + cerrado + estrecho + Remo + Unilateral",
         series: "4",
         repeticiones: "Según carga",
       },
       {
-        nombre:
-          "Triserie: Curl de bíceps en banco Scott (barra) + Curl con mancuernas + Curl isométrico unilateral o alternado",
+        nombre: "Triserie: Scott + Mancuernas + Curl isométrico",
         series: "4",
         repeticiones: "12-15",
       },
@@ -145,14 +134,14 @@ const rutina: DiaRutina[] = [
       },
       {
         nombre:
-          "Circuito de Sentadillas (con carga): Profunda (5x15) + Con salto (5x15) + Con pulso (5x20) + Estocadas con pulso isométrico (5x10 por pierna)",
+          "Circuito Sentadillas: Profunda + Salto + Pulso + Estocada isométrica",
         series: "-",
-        repeticiones: "Usar pesa rusa si es posible",
+        repeticiones: "Con pesa rusa si es posible",
       },
       {
-        nombre: "Circuito de Abdominales + Saltos en el lugar o con cuerda",
+        nombre: "Circuito de Abs + Saltos en el lugar/cuerda",
         series: "4",
-        repeticiones: "Al final del entrenamiento",
+        repeticiones: "Al finalizar",
       },
     ],
   },
@@ -166,80 +155,90 @@ export const RutinaAvanzado: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-10 px-6">
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-center text-pink-500 drop-shadow-[0_0_10px_#ff2b7b] tracking-wider">
-        Rutina Nivel <span className="text-white">Avanzado</span>
+    <div className="max-w-3xl mx-auto py-10 px-6">
+      {/* Título */}
+      <h1 className="text-center text-5xl font-extrabold mb-3 tracking-wider">
+        <span className="text-pink-500 drop-shadow-[0_0_18px_#ff2b7b]">
+          Avanzado
+        </span>
       </h1>
 
-      <p className="text-lg text-center text-gray-300 mb-10">
-        Programa avanzado para mejorar fuerza, volumen y definición muscular.
+      <p className="text-center text-gray-300 text-lg mb-10 max-w-xl mx-auto">
+        Rutina intensa para mejorar fuerza, volumen y definición muscular.
       </p>
 
+      {/* Días */}
       {rutina.map((dia) => (
         <div
           key={dia.nombre}
-          className="mb-4 bg-[#0a0a0a]/70 backdrop-blur-sm rounded-xl overflow-hidden 
-                     border border-pink-500/20 hover:border-pink-500/60 shadow-lg 
-                     hover:shadow-[0_0_15px_#ff2b7b80] transition-all duration-300"
+          className="mb-6 bg-[#0b0b0b]/70 backdrop-blur-xl rounded-2xl overflow-hidden
+          border border-pink-500/20 hover:border-pink-500/50
+          shadow-lg hover:shadow-[0_0_20px_#ff2b7b60] 
+          transition-all duration-300"
         >
+          {/* Header */}
           <button
             onClick={() => toggleDia(dia.nombre)}
-            className={`w-full flex justify-between items-center px-6 py-4 text-left font-bold transition-colors duration-300 ${
-              abierto === dia.nombre
-                ? "bg-pink-600/50 text-white shadow-inner shadow-pink-900/50"
-                : "text-pink-400 hover:bg-[#1a1a1a]"
-            }`}
+            className={`w-full flex justify-between items-center px-6 py-5 text-left text-lg font-semibold tracking-wide transition-all
+              ${
+                abierto === dia.nombre
+                  ? "bg-pink-600/40 text-white"
+                  : "text-pink-400 hover:bg-black/40"
+              }`}
           >
             <span>
-              {dia.nombre}:{" "}
+              {dia.nombre} —{" "}
               <span className="font-medium text-gray-300">{dia.musculos}</span>
             </span>
+
             {abierto === dia.nombre ? (
               <ChevronUp className="w-6 h-6 text-white" />
             ) : (
-              <ChevronDown className="w-6 h-6 text-pink-500" />
+              <ChevronDown className="w-6 h-6 text-pink-400" />
             )}
           </button>
 
+          {/* Contenido */}
           <div
-            className={`transition-all duration-500 ease-in-out ${
+            className={`transition-all duration-500 overflow-hidden 
+            ${
               abierto === dia.nombre
                 ? "max-h-screen opacity-100"
                 : "max-h-0 opacity-0"
-            } overflow-hidden`}
+            }`}
           >
-            <div className="p-4 md:p-6 bg-black/30">
-              <div className="hidden md:grid grid-cols-5 font-semibold text-sm text-pink-400 border-b border-pink-700/50 pb-2 mb-3">
-                <span className="col-span-3">EJERCICIO</span>
-                <span className="text-center">SERIES</span>
-                <span className="text-center">REPETICIONES</span>
+            <div className="p-6 bg-black/40">
+              {/* Cabecera tabla */}
+              <div className="hidden md:grid grid-cols-5 text-sm font-semibold text-pink-400 border-b border-pink-700/40 pb-2 mb-4">
+                <span className="col-span-3">Ejercicio</span>
+                <span className="text-center">Series</span>
+                <span className="text-center">Reps</span>
               </div>
 
-              <div className="flex flex-col gap-3">
+              {/* Ejercicios */}
+              <div className="flex flex-col gap-4">
                 {dia.ejercicios.map((ej, i) => (
                   <div
                     key={i}
-                    className="grid grid-cols-5 items-center bg-[#1a1a1a] p-3 rounded-lg border border-pink-700/30 text-gray-200 shadow-inner shadow-black/50"
+                    className="grid grid-cols-5 items-center bg-[#141414] border border-pink-500/20 
+                    rounded-xl p-4 shadow-inner shadow-black/50 text-gray-200"
                   >
+                    {/* Nombre */}
                     <div className="col-span-5 md:col-span-3 flex items-center gap-3 font-medium">
-                      <Dumbbell className="w-5 h-5 text-pink-500 flex-shrink-0" />
+                      <Dumbbell className="w-5 h-5 text-pink-500" />
                       <span>{ej.nombre}</span>
                     </div>
 
-                    <div className="col-span-2 md:col-span-1 text-center mt-2 md:mt-0 flex md:block justify-between items-center border-t border-gray-700 md:border-none pt-2 md:pt-0">
-                      <span className="md:hidden text-xs text-pink-400/80 mr-2">
-                        Series:
-                      </span>
-                      <span className="font-bold text-pink-300">
+                    {/* Series */}
+                    <div className="col-span-2 md:col-span-1 text-center mt-2 md:mt-0">
+                      <span className="text-pink-300 font-bold">
                         {ej.series}
                       </span>
                     </div>
 
-                    <div className="col-span-3 md:col-span-1 text-center mt-2 md:mt-0 flex md:block justify-between items-center border-t border-gray-700 md:border-none pt-2 md:pt-0">
-                      <span className="md:hidden text-xs text-pink-400/80 mr-2">
-                        Reps:
-                      </span>
-                      <span className="font-bold text-pink-300">
+                    {/* Reps */}
+                    <div className="col-span-3 md:col-span-1 text-center mt-2 md:mt-0">
+                      <span className="text-pink-300 font-bold">
                         {ej.repeticiones}
                       </span>
                     </div>
@@ -248,11 +247,6 @@ export const RutinaAvanzado: React.FC = () => {
               </div>
             </div>
           </div>
-          <div
-            className={`h-[2px] bg-gradient-to-r from-transparent via-pink-500 to-transparent ${
-              abierto === dia.nombre ? "opacity-0" : "opacity-30"
-            } transition-opacity duration-300`}
-          />
         </div>
       ))}
     </div>

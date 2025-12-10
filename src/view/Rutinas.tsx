@@ -2,116 +2,141 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-// Asumiendo que estas rutas de importación son correctas para tus imágenes
+import { ChevronRight } from "lucide-react";
+
 import principianteImg from "@/assets/principiante.webp";
 import intermedioImg from "@/assets/intermedio.webp";
 import avanzadoImg from "@/assets/avanzado.webp";
 import fullBodyImg from "@/assets/3.webp";
 import gluteo from "@/assets/gluteo.webp";
 import funcional from "@/assets/funcional.webp";
+
 const rutinas = [
   {
     to: "/rutinas/principiante",
     title: "Principiante",
     description:
-      "Planes diseñados para quienes comienzan su viaje en el fitness. Se enfocan en movimientos fundamentales y en construir una base sólida.",
+      "Movimientos básicos, técnica correcta y una base sólida para comenzar.",
     image: principianteImg,
   },
   {
     to: "/rutinas/intermedio",
     title: "Intermedio",
     description:
-      "Lleva tu estado físico al siguiente nivel. Estos planes introducen ejercicios más complejos y aumentan la intensidad.",
+      "Más intensidad, nuevos estímulos y una progresividad controlada.",
     image: intermedioImg,
   },
   {
     to: "/rutinas/avanzado",
     title: "Avanzado",
     description:
-      "Para atletas experimentados que buscan superar sus límites. Alta intensidad y técnicas avanzadas para máximos resultados.",
+      "Desafíos complejos para atletas con experiencia y grandes objetivos.",
     image: avanzadoImg,
   },
   {
     to: "/rutinas/gluteos-femorales",
-    title: "Glúteos y Femorales",
+    title: "Glúteos & Femorales",
     description:
-      "Plan especializado de 5 días con doble foco semanal en tren inferior para la máxima hipertrofia y desarrollo de volumen.",
+      "Especialización de 5 días para volumen, fuerza y desarrollo del tren inferior.",
     image: gluteo,
   },
   {
     to: "/rutinas/full-body-3dias",
     title: "Full Body 3 Días",
     description:
-      "Rutina de cuerpo completo para 3 días a la semana, ideal para quienes buscan eficiencia y resultados equilibrados.",
+      "Entrenamiento total eficiente, equilibrado y adaptable a tus tiempos.",
     image: fullBodyImg,
   },
   {
     to: "/rutinas/activo-funcional",
-    title: "Activo y Funcional",
+    title: "Activo & Funcional",
     description:
-      "Plan de 3 días enfocado en movilidad, equilibrio y fuerza funcional. Ideal para adultos mayores o de bajo impacto.",
+      "Movilidad, estabilidad y fuerza global. Ideal para bajo impacto.",
     image: funcional,
   },
 ];
 
 export const Rutinas: React.FC = () => {
   return (
-    <div className="pb-16 pt-4">
-      {/* Título Principal - CLAVE: Aseguramos text-center y eliminamos md:text-left */}
-      <h1 className="text-5xl font-extrabold mb-4 text-center text-pink-500 drop-shadow-[0_0_15px_#ff2b7b] tracking-wider animate-pulse">
-        Planes de Rutinas
+    <div className="pb-20 pt-6">
+      {/* TÍTULO */}
+      <h1
+        className="text-4xl md:text-5xl font-extrabold mb-3 text-center 
+      text-white tracking-wide"
+      >
+        <span className="text-pink-500 drop-shadow-[0_0_15px_#ff2b7b]">
+          Planes
+        </span>{" "}
+        de Rutinas
       </h1>
 
-      {/* Subtítulo - CLAVE: Aseguramos text-center y eliminamos md:text-left */}
-      <h2 className="text-xl font-medium mb-12 text-center text-gray-400">
-        Selecciona un nivel para comenzar tu camino y alcanzar tus objetivos.
-      </h2>
+      <p className="text-center text-gray-400 text-lg mb-12 max-w-xl mx-auto">
+        Elegí el programa que acompañará tu progreso. Diseñados para distintos
+        niveles y objetivos.
+      </p>
 
-      {/* Contenedor de las Tarjetas (Similar al grid de Ejercicios) */}
-      <div className="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-        {rutinas.map((rutina) => (
+      {/* GRID */}
+      <div className="grid gap-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto px-4">
+        {rutinas.map((rutina, i) => (
           <Link key={rutina.title} to={rutina.to} className="group block">
             <div
-              className="bg-[#0a0a0a]/70 backdrop-blur-sm rounded-3xl overflow-hidden 
-              border border-pink-500/20 hover:border-pink-500/60 shadow-lg 
-              hover:shadow-[0_0_25px_#ff2b7b80] transition-all duration-500 
-              flex flex-col min-h-full"
+              className="
+              bg-[#0b0b0b]/80 backdrop-blur-sm rounded-3xl overflow-hidden
+              border border-pink-500/20 
+              hover:border-pink-500/70 
+              shadow-lg hover:shadow-[0_0_30px_#ff2b7b50]
+              transition-all duration-500 flex flex-col h-full
+              hover:-translate-y-1
+              "
             >
               {/* Imagen */}
-              <div className="relative overflow-hidden h-64">
+              <div className="relative h-64 overflow-hidden">
                 <img
                   src={rutina.image}
-                  alt={`Imagen de rutina ${rutina.title}`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  alt={rutina.title}
+                  className="w-full h-full object-cover transition-all duration-700 
+                  group-hover:scale-110 group-hover:brightness-110"
                 />
-                {/* Overlay de Sombra */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+
+                <div
+                  className="absolute inset-0 bg-gradient-to-t 
+                from-black/70 via-black/20 to-transparent"
+                />
               </div>
 
-              {/* Texto y Botón */}
-              <div className="p-6 flex flex-col flex-1 justify-between">
+              {/* CONTENIDO */}
+              <div className="p-7 flex flex-col flex-1 justify-between">
                 <div>
-                  <h2 className="text-2xl font-bold mb-2 text-pink-400 tracking-wide drop-shadow-[0_0_10px_#ff2b7b]">
-                    {rutina.title}
+                  <h2 className="text-2xl font-bold text-white mb-2 tracking-wide">
+                    <span className="text-pink-400 drop-shadow-[0_0_10px_#ff2b7b]">
+                      {rutina.title}
+                    </span>
                   </h2>
-                  <p className="text-gray-300 text-sm leading-relaxed mb-4">
+
+                  <p className="text-gray-300 text-sm leading-relaxed">
                     {rutina.description}
                   </p>
                 </div>
 
-                {/* Botón */}
-                <button
-                  className="mt-auto w-full py-3 rounded-xl 
-                  bg-pink-600/70 text-white font-semibold 
-                  hover:bg-pink-500 transition-colors duration-300 
-                  shadow-md hover:shadow-lg shadow-pink-900/50"
-                >
-                  Ver Rutinas
-                </button>
+                {/* BOTÓN */}
+                <div className="mt-6 flex justify-end">
+                  <button
+                    className="
+                    flex items-center gap-2 px-5 py-2.5 rounded-xl 
+                    bg-pink-600/80 text-white font-semibold 
+                    hover:bg-pink-500 transition-all duration-300
+                    shadow-md hover:shadow-lg shadow-pink-900/50
+                    group-hover:translate-x-1
+                    "
+                  >
+                    Ver Rutinas
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
 
-              {/* Glow inferior */}
-              <div className="h-[3px] bg-gradient-to-r from-transparent via-pink-500 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Glow */}
+              <div className="h-[2px] bg-gradient-to-r from-transparent via-pink-500 to-transparent opacity-50 group-hover:opacity-100 transition-all"></div>
             </div>
           </Link>
         ))}

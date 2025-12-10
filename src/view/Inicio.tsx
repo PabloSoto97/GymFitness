@@ -1,103 +1,92 @@
 import { useState, useEffect } from "react";
-import { HeartHandshake, Zap, Smile } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Zap, HeartHandshake, Dumbbell } from "lucide-react";
 
 export const Inicio = () => {
   const [userName, setUserName] = useState("Atleta");
   const [loading, setLoading] = useState(true);
   const [showButton, setShowButton] = useState(false);
 
-  // 1. EFECTO DE CARGA (Simulación de carga/fetch inicial)
   useEffect(() => {
-    // Obtiene el nombre guardado en localStorage
     const nombreGuardado = localStorage.getItem("nombre");
-
-    if (nombreGuardado) {
-      setUserName(nombreGuardado);
-    } else {
-      setUserName("Atleta");
-    }
-
+    setUserName(nombreGuardado || "Atleta");
     setLoading(false);
   }, []);
 
-  // 2. EFECTO DE VERIFICACIÓN DE ROL (Verifica si el usuario es ADMIN)
   useEffect(() => {
-    // ⚠️ CORRECCIÓN: Eliminamos el uso de 'data' y solo leemos del localStorage
     const rol = localStorage.getItem("rol");
+    setShowButton(rol === "ADMIN");
+  }, []);
 
-    // El token es irrelevante aquí, solo se usa el rol para mostrar el botón
-    if (rol === "ADMIN") {
-      setShowButton(true);
-    } else {
-      setShowButton(false);
-    }
-  }, []); // Se ejecuta una sola vez al cargar el componente.
-
-  // MUESTRA EL SPINNER MIENTRAS loading ES TRUE
   if (loading) {
     return (
-      <section className="flex flex-col items-center justify-center min-h-screen text-center">
+      <section className="flex flex-col items-center justify-center min-h-screen text-center bg-black">
         <div className="w-10 h-10 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
         <p className="mt-4 text-gray-400">Cargando perfil...</p>
       </section>
     );
   }
 
-  // CONTENIDO PRINCIPAL (Una vez que loading es false)
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-screen w-full text-center overflow-hidden bg-gradient-to-b from-gray-950 to-black">
-      {/* ... todo el resto del JSX permanece igual ... */}
-      <div className="absolute inset-0 bg-[url('/bg.jpeg')] bg-cover bg-center opacity-60 brightness-75 contrast-125"></div>
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]"></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black">
+      {/* Background */}
+      <div className="absolute inset-0 bg-[url('/bg.jpeg')] bg-cover bg-center opacity-40"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
 
-      <div className="relative z-10 max-w-3xl px-6 py-12">
-        <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 animate-pulse drop-shadow-[0_0_20px_rgba(236,72,153,0.7)]">
-          ¡Bienvenida, <span className="text-pink-400">{userName}</span>!
+      {/* CONTENT */}
+      <div className="relative z-10 max-w-3xl w-full px-6 py-16 text-center">
+        {/* Welcome */}
+        <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4 leading-tight drop-shadow-[0_0_20px_rgba(236,72,153,0.4)]">
+          Hola, <span className="text-pink-400">{userName}</span>
         </h1>
-
-        <p className="text-lg md:text-2xl text-gray-300 font-light mb-10 flex items-center justify-center gap-2">
-          <Zap className="w-6 h-6 text-pink-500 drop-shadow-[0_0_8px_#f472b6]" />
-          Tu desafío empieza aquí. Transformación y fuerza en un solo lugar.
+        <p className="text-lg md:text-xl text-gray-300 flex items-center justify-center gap-2">
+          <Zap className="w-6 h-6 text-pink-500" />
+          Tu transformación empieza ahora.
         </p>
 
-        <div className="flex flex-col md:flex-row justify-center gap-8 mt-8">
-          <div className="p-6 bg-black/60 rounded-xl border border-pink-700/50 shadow-lg hover:shadow-pink-500/40 transition duration-300">
-            <HeartHandshake className="w-8 h-8 mx-auto mb-3 text-pink-400" />
-            <p className="text-sm font-semibold text-gray-100">
-              <span className="text-pink-300">Tu Progreso</span> te espera
+        {/* CARDS */}
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Card: Progreso */}
+          <div className="bg-black/60 p-6 rounded-2xl border border-pink-500/20 backdrop-blur-md shadow-[0_0_20px_rgba(236,72,153,0.15)] hover:shadow-[0_0_35px_rgba(236,72,153,0.35)] transition-all duration-300">
+            <HeartHandshake className="w-10 h-10 mx-auto mb-3 text-pink-400" />
+            <h3 className="text-lg font-semibold text-white">Tu progreso</h3>
+            <p className="text-gray-400 text-sm mt-1">
+              Metas, hábitos y evolución.
             </p>
-            <p className="text-xs text-gray-400 mt-1">Visualiza tus metas.</p>
           </div>
 
-          <Link to={"/rutinas"}>
-            <div className="p-6 bg-black/60 rounded-xl border border-pink-700/50 shadow-lg hover:shadow-pink-500/40 transition duration-300">
-              <Smile className="w-8 h-8 mx-auto mb-3 text-pink-400" />
-              <p className="text-sm font-semibold text-gray-100">
-                <span className="text-pink-300">6 Rutinas</span> activas
-              </p>
-              <p className="text-xs text-gray-400 mt-1">
-                Lista para empezar la semana.
+          {/* Card: Rutinas */}
+          <Link to="/rutinas">
+            <div className="bg-black/60 p-6 rounded-2xl border border-pink-500/20 backdrop-blur-md shadow-[0_0_20px_rgba(236,72,153,0.15)] hover:shadow-[0_0_35px_rgba(236,72,153,0.35)] hover:bg-black/70 transition-all duration-300 cursor-pointer">
+              <Dumbbell className="w-10 h-10 mx-auto mb-3 text-pink-400" />
+              <h3 className="text-lg font-semibold text-white">
+                Rutinas activas
+              </h3>
+              <p className="text-gray-400 text-sm mt-1">
+                Entrenamientos listos para hoy.
               </p>
             </div>
           </Link>
 
-          {/* ESTE BOTÓN AHORA DEBERÍA FUNCIONAR CORRECTAMENTE */}
+          {/* Card: Admin (solo si ADMIN) */}
           {showButton && (
-            <Link to={"/admin"}>
-              <div className="p-6 bg-black/60 rounded-xl border border-pink-700/50 shadow-lg hover:shadow-pink-500/40 transition duration-300">
-                <Smile className="w-8 h-8 mx-auto mb-3 text-pink-400" />
-                <p className="text-sm font-semibold text-gray-100">
-                  Panel de <span className="text-pink-300">Administración</span>
+            <Link to="/admin">
+              <div className="bg-black/60 p-6 rounded-2xl border border-pink-500/20 backdrop-blur-md shadow-[0_0_20px_rgba(236,72,153,0.15)] hover:shadow-[0_0_35px_rgba(236,72,153,0.35)] hover:bg-black/70 transition-all duration-300 cursor-pointer">
+                <Zap className="w-10 h-10 mx-auto mb-3 text-pink-400" />
+                <h3 className="text-lg font-semibold text-white">
+                  Panel Admin
+                </h3>
+                <p className="text-gray-400 text-sm mt-1">
+                  Gestión del sistema.
                 </p>
               </div>
             </Link>
           )}
         </div>
-      </div>
 
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-pink-500/50 blur-sm opacity-50 shadow-[0_0_10px_#ec4899]"></div>
+        {/* Divider */}
+        <div className="mt-16 h-[2px] w-full bg-pink-500/30 rounded-full shadow-[0_0_15px_#ec4899]"></div>
+      </div>
     </section>
   );
 };

@@ -16,131 +16,81 @@ interface DiaRutina {
 const rutina: DiaRutina[] = [
   {
     nombre: "Lunes",
-    musculos: "Cuádriceps, Aductores, Pantorrillas",
+    musculos: "Pecho + Hombros",
     ejercicios: [
+      { nombre: "Press banca con barra", series: "4", repeticiones: "8 - 10" },
       {
-        nombre: "Activación: Camilla de extensiones",
-        series: "2",
-        repeticiones: "20",
+        nombre: "Press inclinado con mancuernas",
+        series: "4",
+        repeticiones: "10",
       },
       {
-        nombre:
-          "Circuito: Sentadilla frontal + Desplantes + Sentadilla profunda",
-        series: "4",
-        repeticiones: "ida y vuelta",
-      },
-      {
-        nombre: "Biserie: Prensa a 45° (pies separados) + Hack (pies en medio)",
-        series: "4",
-        repeticiones: "12-15",
-      },
-      {
-        nombre:
-          "Biserie Combinada: Sillón de aducción + Zancada lateral unilateral",
-        series: "4",
+        nombre: "Aperturas en banco inclinado",
+        series: "3",
         repeticiones: "12",
       },
-      {
-        nombre:
-          "Biserie: Camilla de extensiones unilateral + Triserie de Pantorrillas",
-        series: "4",
-        repeticiones: "15 (extensiones) y 10 (pantorrillas)",
-      },
+      { nombre: "Press militar con barra", series: "4", repeticiones: "8" },
+      { nombre: "Elevaciones laterales", series: "3", repeticiones: "15" },
     ],
   },
   {
     nombre: "Martes",
-    musculos: "Hombros, Pectorales, Tríceps",
+    musculos: "Espalda + Bíceps",
     ejercicios: [
-      {
-        nombre: "Activación: Vuelos laterales + vuelos frontales",
-        series: "2",
-        repeticiones: "20",
-      },
-      {
-        nombre: "Circuito: Vuelos laterales + Press militar + Vuelo a 45°",
-        series: "4",
-        repeticiones: "12",
-      },
-      {
-        nombre: "Biserie: Press de banca + Apertura de pecho",
-        series: "4",
-        repeticiones: "12",
-      },
-      {
-        nombre:
-          "Triserie: Extensión polea alta + Tras nuca + Extensión unilateral",
-        series: "4",
-        repeticiones: "15",
-      },
+      { nombre: "Dominadas asistidas", series: "4", repeticiones: "6 - 8" },
+      { nombre: "Jalón al pecho", series: "4", repeticiones: "10" },
+      { nombre: "Remo con barra", series: "4", repeticiones: "8 - 10" },
+      { nombre: "Curl bíceps barra Z", series: "3", repeticiones: "12" },
+      { nombre: "Curl martillo", series: "3", repeticiones: "12" },
     ],
   },
   {
     nombre: "Miércoles",
-    musculos: "Glúteos e Isquiotibiales",
+    musculos: "Piernas (Fuerza)",
     ejercicios: [
-      {
-        nombre: "Activación: Hip thrust con pulso",
-        series: "1",
-        repeticiones: "20",
-      },
-      { nombre: "Hip thrust", series: "4", repeticiones: "12-15" },
-      {
-        nombre:
-          "Triserie: Sentadilla profunda + Peso muerto rumano + Subida a banco",
-        series: "4",
-        repeticiones: "10-12",
-      },
-      {
-        nombre: "Biserie: Patada de burro + Abducción con disco",
-        series: "4",
-        repeticiones: "12",
-      },
+      { nombre: "Sentadilla con barra", series: "4", repeticiones: "6 - 8" },
+      { nombre: "Prensa pesada", series: "4", repeticiones: "10" },
+      { nombre: "Peso muerto rumano", series: "4", repeticiones: "10" },
+      { nombre: "Extensiones de cuadriceps", series: "3", repeticiones: "15" },
+      { nombre: "Curl femoral sentado", series: "3", repeticiones: "15" },
     ],
   },
   {
     nombre: "Jueves",
-    musculos: "Espalda y Bíceps",
+    musculos: "Glúteos + Posterior",
     ejercicios: [
+      { nombre: "Hip thrust con barra", series: "4", repeticiones: "8 - 12" },
+      { nombre: "Peso muerto sumo", series: "4", repeticiones: "8" },
       {
-        nombre: "Activación: Jalón al pecho abierto + cerrado",
-        series: "2",
+        nombre: "Elevación de glúteo en banco",
+        series: "3",
+        repeticiones: "15",
+      },
+      { nombre: "Curl femoral acostado", series: "3", repeticiones: "12 - 15" },
+      {
+        nombre: "Abducciones en polea o banda",
+        series: "3",
         repeticiones: "20",
-      },
-      {
-        nombre:
-          "Circuito: Jalón abierto + cerrado + estrecho + Remo + Remo unilateral",
-        series: "4",
-        repeticiones: "según carga",
-      },
-      {
-        nombre:
-          "Triserie: Curl banco Scott + Curl mancuernas + Curl isométrico",
-        series: "4",
-        repeticiones: "12-15",
       },
     ],
   },
   {
     nombre: "Viernes",
-    musculos: "Sentadillas y Abdominales",
+    musculos: "Full Body + Core",
     ejercicios: [
       {
-        nombre: "Activación: Sentadilla profunda",
-        series: "1",
-        repeticiones: "20",
+        nombre: "Sentadilla frontal con barra",
+        series: "3",
+        repeticiones: "8 - 10",
       },
+      { nombre: "Press militar mancuernas", series: "3", repeticiones: "10" },
+      { nombre: "Remo con mancuerna", series: "3", repeticiones: "12" },
       {
-        nombre:
-          "Circuito: Profunda (5x15) + Con salto (5x15) + Con pulso (5x20) + Estocadas (5x10 c/pierna)",
-        series: "5",
-        repeticiones: "según variante",
+        nombre: "Plancha + bird dog",
+        series: "3",
+        repeticiones: "30 - 40 seg",
       },
-      {
-        nombre: "Abdominales + salto de cuerda",
-        series: "4",
-        repeticiones: "final del entrenamiento",
-      },
+      { nombre: "Crunches en máquina", series: "3", repeticiones: "15" },
     ],
   },
 ];
@@ -153,81 +103,91 @@ export const RutinaIntermedio: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-10 px-6">
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-center text-pink-500 drop-shadow-[0_0_10px_#ff2b7b] tracking-wider">
-        Rutina Nivel <span className="text-white">Intermedio</span>
+    <div className="max-w-3xl mx-auto py-10 px-6">
+      {/* Título */}
+      <h1 className="text-center text-5xl font-extrabold mb-3 tracking-wider">
+        <span className="text-pink-500 drop-shadow-[0_0_18px_#ff2b7b]">
+          Intermedio
+        </span>
       </h1>
 
-      <p className="text-lg text-center text-gray-300 mb-10">
-        Un plan desafiante para desarrollar fuerza, control y resistencia
-        muscular con técnicas combinadas.
+      <p className="text-center text-gray-300 text-lg mb-10 max-w-xl mx-auto">
+        Más volumen, más intensidad y progresión continua. Ideal para quienes ya
+        dominan la técnica.
       </p>
 
+      {/* Días */}
       {rutina.map((dia) => (
         <div
           key={dia.nombre}
-          className="mb-4 bg-[#0a0a0a]/70 backdrop-blur-sm rounded-xl overflow-hidden 
-                     border border-pink-500/20 hover:border-pink-500/60 shadow-lg 
-                     hover:shadow-[0_0_15px_#ff2b7b80] transition-all duration-300"
+          className="mb-6 bg-[#0b0b0b]/70 backdrop-blur-xl rounded-2xl overflow-hidden
+          border border-pink-500/20 hover:border-pink-500/50
+          shadow-lg hover:shadow-[0_0_20px_#ff2b7b60] 
+          transition-all duration-300"
         >
+          {/* Header */}
           <button
             onClick={() => toggleDia(dia.nombre)}
-            className={`w-full flex justify-between items-center px-6 py-4 text-left font-bold transition-colors duration-300 ${
-              abierto === dia.nombre
-                ? "bg-pink-600/50 text-white shadow-inner shadow-pink-900/50"
-                : "text-pink-400 hover:bg-[#1a1a1a]"
-            }`}
+            className={`w-full flex justify-between items-center px-6 py-5 text-left text-lg font-semibold tracking-wide transition-all
+              ${
+                abierto === dia.nombre
+                  ? "bg-pink-600/40 text-white"
+                  : "text-pink-400 hover:bg-black/40"
+              }`}
           >
             <span>
-              {dia.nombre}:{" "}
+              {dia.nombre} —{" "}
               <span className="font-medium text-gray-300">{dia.musculos}</span>
             </span>
+
             {abierto === dia.nombre ? (
               <ChevronUp className="w-6 h-6 text-white" />
             ) : (
-              <ChevronDown className="w-6 h-6 text-pink-500" />
+              <ChevronDown className="w-6 h-6 text-pink-400" />
             )}
           </button>
 
+          {/* Contenido */}
           <div
-            className={`transition-all duration-500 ease-in-out ${
+            className={`transition-all duration-500 overflow-hidden 
+            ${
               abierto === dia.nombre
                 ? "max-h-screen opacity-100"
                 : "max-h-0 opacity-0"
-            } overflow-hidden`}
+            }`}
           >
-            <div className="p-4 md:p-6 bg-black/30">
-              <div className="hidden md:grid grid-cols-5 font-semibold text-sm text-pink-400 border-b border-pink-700/50 pb-2 mb-3">
-                <span className="col-span-3">EJERCICIO</span>
-                <span className="text-center">SERIES</span>
-                <span className="text-center">REPETICIONES</span>
+            <div className="p-6 bg-black/40">
+              {/* Cabecera tabla */}
+              <div className="hidden md:grid grid-cols-5 text-sm font-semibold text-pink-400 border-b border-pink-700/40 pb-2 mb-4">
+                <span className="col-span-3">Ejercicio</span>
+                <span className="text-center">Series</span>
+                <span className="text-center">Reps</span>
               </div>
 
-              <div className="flex flex-col gap-3">
+              {/* Ejercicios */}
+              <div className="flex flex-col gap-4">
                 {dia.ejercicios.map((ej, i) => (
                   <div
                     key={i}
-                    className="grid grid-cols-5 items-center bg-[#1a1a1a] p-3 rounded-lg border border-pink-700/30 text-gray-200 shadow-inner shadow-black/50"
+                    className="grid grid-cols-5 items-center bg-[#141414] border border-pink-500/20 
+                    rounded-xl p-4 shadow-inner shadow-black/50 text-gray-200"
                   >
+                    {/* Nombre */}
                     <div className="col-span-5 md:col-span-3 flex items-center gap-3 font-medium">
-                      <Dumbbell className="w-5 h-5 text-pink-500 flex-shrink-0" />
+                      <Dumbbell className="w-5 h-5 text-pink-500" />
                       <span>{ej.nombre}</span>
                     </div>
 
-                    <div className="col-span-2 md:col-span-1 text-center mt-2 md:mt-0 flex md:block justify-between items-center border-t border-gray-700 md:border-none pt-2 md:pt-0">
-                      <span className="md:hidden text-xs text-pink-400/80 mr-2">
-                        Series:
-                      </span>
-                      <span className="font-bold text-pink-300">
+                    {/* Series */}
+                    <div className="col-span-2 md:col-span-1 text-center mt-2 md:mt-0">
+                      <span className="text-pink-300 font-bold">
                         {ej.series}
                       </span>
                     </div>
 
-                    <div className="col-span-3 md:col-span-1 text-center mt-2 md:mt-0 flex md:block justify-between items-center border-t border-gray-700 md:border-none pt-2 md:pt-0">
-                      <span className="md:hidden text-xs text-pink-400/80 mr-2">
-                        Reps:
-                      </span>
-                      <span className="font-bold text-pink-300">
+                    {/* Reps */}
+                    <div className="col-span-3 md:col-span-1 text-center mt-2 md:mt-0">
+                      <span className="text-pink-300 font-bold">
                         {ej.repeticiones}
                       </span>
                     </div>
@@ -236,11 +196,6 @@ export const RutinaIntermedio: React.FC = () => {
               </div>
             </div>
           </div>
-          <div
-            className={`h-[2px] bg-gradient-to-r from-transparent via-pink-500 to-transparent ${
-              abierto === dia.nombre ? "opacity-0" : "opacity-30"
-            } transition-opacity duration-300`}
-          />
         </div>
       ))}
     </div>
