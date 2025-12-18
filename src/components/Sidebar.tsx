@@ -1,6 +1,15 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Dumbbell, Home, List, Menu, X, LogOut, LogIn } from "lucide-react";
+import {
+  Dumbbell,
+  Home,
+  List,
+  Menu,
+  X,
+  LogOut,
+  LogIn,
+  Activity,
+} from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
 export const Sidebar = () => {
@@ -20,6 +29,7 @@ export const Sidebar = () => {
     { to: "/ejercicios", label: "Ejercicios", icon: <Dumbbell size={20} /> },
     { to: "/macros", label: "Macros", icon: <Dumbbell size={20} /> },
     { to: "/rutinas", label: "Rutinas", icon: <List size={20} /> },
+    { to: "/dashboard", label: "Dashboard", icon: <Activity size={20} /> },
   ];
 
   const handleLogout = () => {

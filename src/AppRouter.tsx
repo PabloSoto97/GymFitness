@@ -20,6 +20,7 @@ import LoginFire from "./view/LoginFire";
 import AdminPanel from "./view/AdminPanel";
 
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import Dashboard from "./view/features/dashboard/Dashboard";
 
 export const AppRouter = () => {
   return (
@@ -40,6 +41,14 @@ export const AppRouter = () => {
             element={
               <ProtectedRoute>
                 <Ejercicios />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
               </ProtectedRoute>
             }
           />
