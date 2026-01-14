@@ -9,6 +9,7 @@ import {
   LogOut,
   LogIn,
   Activity,
+  Utensils,
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
@@ -30,6 +31,7 @@ export const Sidebar = () => {
     { to: "/macros", label: "Macros", icon: <Dumbbell size={20} /> },
     { to: "/rutinas", label: "Rutinas", icon: <List size={20} /> },
     { to: "/dashboard", label: "Dashboard", icon: <Activity size={20} /> },
+    { to: "/recipes", label: "Recetas", icon: <Utensils size={20} /> },
   ];
 
   const handleLogout = () => {
@@ -47,6 +49,13 @@ export const Sidebar = () => {
       >
         {isOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
+      {/* Overlay mobile para cerrar sidebar */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 z-30 md:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
 
       <aside
         className={`fixed top-0 left-0 h-full w-56 bg-[#0f0f0f] text-white flex flex-col shadow-2xl z-40

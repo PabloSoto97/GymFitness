@@ -21,6 +21,10 @@ import AdminPanel from "./view/AdminPanel";
 
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import Dashboard from "./view/features/dashboard/Dashboard";
+import MealAlternatives from "./view/MealAlternatives";
+import MealPlan from "./view/MealPlan";
+import { RecipesView } from "./view/recipes/RecipesView";
+import { RecipeDetailView } from "./view/recipes/RecipeDetailView";
 
 export const AppRouter = () => {
   return (
@@ -44,6 +48,26 @@ export const AppRouter = () => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/meal-alternatives/:meal"
+            element={
+              <ProtectedRoute>
+                <MealAlternatives />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/recipes" element={<RecipesView />} />
+          <Route path="/recipes/:id" element={<RecipeDetailView />} />
+
+          <Route
+            path="/meal-plan"
+            element={
+              <ProtectedRoute>
+                <MealPlan />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/dashboard"
             element={

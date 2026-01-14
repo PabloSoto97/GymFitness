@@ -5,8 +5,8 @@ import { ejercicios } from "../data/ejercicios"; // Ajustá la ruta según dónd
 
 export const Ejercicios: React.FC = () => {
   return (
-    <div className="pb-16 pt-4">
-      <h1 className="text-5xl font-extrabold mb-12 text-center text-pink-500 drop-shadow-[0_0_15px_#ff2b7b] tracking-wider animate-pulse">
+    <div className="pb-16 pt-16">
+      <h1 className="text-center pb-5 text-4xl font-bold tracking-tight  text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400">
         Ejercicios Destacados
       </h1>
 

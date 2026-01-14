@@ -1,10 +1,13 @@
 import { AuthProvider } from "./context/AuthContext";
+import { NutritionProvider } from "./context/NutritionContext";
 import { AppRouter } from "./AppRouter";
 
 function App() {
   return (
     <AuthProvider>
-      <AppRouter />
+      <NutritionProvider>
+        <AppRouter />
+      </NutritionProvider>
     </AuthProvider>
   );
 }

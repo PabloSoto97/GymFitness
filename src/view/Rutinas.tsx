@@ -58,19 +58,13 @@ const rutinas = [
 
 export const Rutinas: React.FC = () => {
   return (
-    <div className="pb-20 pt-6">
+    <div className="pb-20 pt-15 md:pt-6">
       {/* TÍTULO */}
-      <h1
-        className="text-4xl md:text-5xl font-extrabold mb-3 text-center 
-      text-white tracking-wide"
-      >
-        <span className="text-pink-500 drop-shadow-[0_0_15px_#ff2b7b]">
-          Planes
-        </span>{" "}
-        de Rutinas
+      <h1 className="text-center text-4xl font-bold tracking-tight mb-2 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400">
+        Planes de Rutinas
       </h1>
 
-      <p className="text-center text-gray-400 text-lg mb-12 max-w-xl mx-auto">
+      <p className="text-center font-semibold text-gray-300 text-sm mb-12 max-w-xl mx-auto tracking-tight">
         Elegí el programa que acompañará tu progreso. Diseñados para distintos
         niveles y objetivos.
       </p>

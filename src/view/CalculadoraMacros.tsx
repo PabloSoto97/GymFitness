@@ -1,8 +1,20 @@
 import { useState } from "react";
-import { Calculator, Flame, Gauge, ArrowDown, ArrowUp } from "lucide-react";
+import {
+  Calculator,
+  Flame,
+  Gauge,
+  ArrowDown,
+  ArrowUp,
+  MousePointerClick,
+} from "lucide-react";
+import { useNutrition } from "../context/NutritionContext";
+import { useNavigate } from "react-router-dom";
 
 export const CalculadoraMacros = () => {
   // ------------------ STATE ------------------
+  const { setNutrition } = useNutrition();
+  const navigate = useNavigate();
+
   const [peso, setPeso] = useState("");
   const [altura, setAltura] = useState("");
   const [edad, setEdad] = useState("");
@@ -24,7 +36,6 @@ export const CalculadoraMacros = () => {
     const a = parseFloat(altura);
     const e = parseFloat(edad);
 
-    // Fórmula Harris-Benedict
     const tmb =
       sexo === "Mujer"
         ? 655 + 9.6 * p + 1.8 * a - 4.7 * e
@@ -64,8 +75,22 @@ export const CalculadoraMacros = () => {
     });
   };
 
+  const elegirPlan = (
+    goal: "deficit" | "maintain" | "bulk",
+    calories: string
+  ) => {
+    if (calories === "---") return;
+
+    setNutrition({
+      goal,
+      calories: Number(calories),
+    });
+
+    navigate("/meal-plan");
+  };
+
   return (
-    <section className="min-h-screen w-full bg-black text-white px-6 pt-10 pb-20 font-sans relative overflow-hidden">
+    <section className="min-h-screen w-full bg-black text-white px-6 pt-15 pb-20 font-sans relative overflow-hidden">
       {/* ---- Glow Fondo ---- */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-pink-600/20 blur-[160px] rounded-full" />
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-pink-500/10 blur-[140px] rounded-full" />
@@ -73,11 +98,10 @@ export const CalculadoraMacros = () => {
       <div className="max-w-xl mx-auto relative z-20">
         {/* ---- HEADER ---- */}
         <header className="text-center mb-10">
-          <h1 className="text-4xl font-bold tracking-tight mb-2 flex items-center justify-center gap-2">
-            <Calculator className="w-9 h-9 text-pink-500" />
+          <h1 className="text-4xl font-bold tracking-tight mb-2 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400">
             Calculadora de Macros
           </h1>
-          <p className="text-gray-300 text-sm">
+          <p className="text-gray-300 text-sm font-semibold">
             Descubrí tus calorías ideales según tu cuerpo y actividad.
           </p>
         </header>
@@ -150,31 +174,44 @@ export const CalculadoraMacros = () => {
           </div>
         </div>
 
+        {/* ---- GUIA SUAVE PARA EL USUARIO ---- */}
+        <div className="flex items-center justify-center gap-2 mt-6 text-xs text-pink-400/80 animate-pulse">
+          <MousePointerClick size={14} />
+          Tocá un objetivo para ver tu plan de comidas personalizado
+          <span className="text-pink-400"> 👇</span>
+        </div>
+
         {/* ---- RESULTADOS ---- */}
-        <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 shadow-xl mt-10">
+        <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 shadow-xl mt-6">
           <h2 className="text-lg font-semibold mb-4 flex items-center gap-2 text-gray-200">
             <Flame className="text-pink-500" />
             Resultados estimados
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <ResultCard title="TMB" value={resultados.tmb} color="pink" />
+            {/*<ResultCard title="TMB" value={resultados.tmb} color="pink" />*/}
+
             <ResultCard
               title="Mantenimiento"
               value={resultados.mantenimiento}
               color="pink"
+              onClick={() => elegirPlan("maintain", resultados.mantenimiento)}
             />
+
             <ResultCard
               title="Déficit"
               value={resultados.deficit}
               icon={<ArrowDown />}
               color="red"
+              onClick={() => elegirPlan("deficit", resultados.deficit)}
             />
+
             <ResultCard
               title="Aumento"
               value={resultados.aumento}
               icon={<ArrowUp />}
               color="green"
+              onClick={() => elegirPlan("bulk", resultados.aumento)}
             />
           </div>
 
@@ -253,11 +290,13 @@ const ResultCard = ({
   value,
   icon,
   color,
+  onClick,
 }: {
   title: string;
   value: string;
   icon?: any;
   color: "pink" | "red" | "green";
+  onClick?: () => void;
 }) => {
   const colors = {
     pink: "text-pink-400",
@@ -266,7 +305,11 @@ const ResultCard = ({
   };
 
   return (
-    <div className="p-4 rounded-xl bg-white/5 border border-white/10 shadow-inner">
+    <div
+      onClick={onClick}
+      className={`p-4 rounded-xl bg-white/5 border border-white/10 shadow-inner
+        ${onClick ? "cursor-pointer hover:border-pink-500 transition" : ""}`}
+    >
       <div className="flex items-center gap-2 mb-1 text-gray-300 text-sm">
         {icon && <span className={colors[color]}>{icon}</span>}
         {title}

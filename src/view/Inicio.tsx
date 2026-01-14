@@ -60,12 +60,6 @@ export const Inicio = () => {
 
         {/* Cards */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <DashboardCard
-            icon={<HeartHandshake />}
-            title="Tu progreso"
-            description="Seguimiento, metas y hábitos"
-          />
-
           <Link to="/rutinas">
             <DashboardCard
               icon={<Dumbbell />}
@@ -80,6 +74,14 @@ export const Inicio = () => {
               icon={<Activity />}
               title="Dashboard"
               description="Tu actividad y progreso diario"
+              highlight
+            />
+          </Link>
+          <Link to="/Macros">
+            <DashboardCard
+              icon={<Dumbbell />}
+              title="Calculadora de Macros"
+              description="Calcula tus macros diarias y personaliza tu plan nutricional"
               highlight
             />
           </Link>
